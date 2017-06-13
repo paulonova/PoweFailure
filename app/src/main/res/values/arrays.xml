@@ -1,0 +1,21 @@
+
+<resources>
+        <string-array name="select_dialog_items2">
+        <item>vtext.com</item>
+        <item>bellsouth.cl</item>
+        <item>mobile.mycingular.com</item>
+        <item>page.nextel.com</item>
+        <item>tmomail.net</item>
+        <item>vmobl.com</item>
+        <item>txt.att.net</item>
+        <item>txt.bell.ca</item>
+        <item>pcs.rogers.com</item>
+        <item>sms.fido.ca</item>
+        <item>msg.telus.com</item>
+        <item>vmobile.ca</item>
+        <item>mobiletxt.ca</item>
+        <item>msg.koodomobile.com</item>
+        <item>sms.sasktel.com</item>
+        <item>text.mts.net</item>
+    </string-array>
+</resources>
