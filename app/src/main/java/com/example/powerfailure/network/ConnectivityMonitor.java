@@ -22,6 +22,7 @@ import java.util.List;
 /** * Created by Paulo Vila Nova on 13/06/2017.
  */
 public class ConnectivityMonitor extends BroadcastReceiver{
+
     private boolean isConnected = false;
     private boolean bounded = false;
 
