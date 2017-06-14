@@ -17,13 +17,13 @@ public class UserSettings {
 
 
     private enum UserPrefKey {
-        FIRST_TIME_KEY              ( TAG + ".FIRST_TIME_KEY" ),
-        USERNAME_KEY                ( TAG + ".USERNAME_KEY" ),
-        PASSWORD_KEY                ( TAG + ".PASSWORD_KEY" ),
-        PATIENT_ID_KEY              ( TAG + ".PATIENT_ID_KEY"),
-        PREFERENCE_MDS_URL          ( TAG + ".PREFERENCE_MDS_URL"),
-        PREFERENCE_SECURE_TRANSMISSION (TAG + ".PREFERENCE_SECURE_TRANSMISSION"),
-        PHONE_NUMBER_KEY            ( TAG + ".PHONE_NUMBER_KEY");
+        FIRST_TIME_KEY                  ( TAG + ".FIRST_TIME_KEY" ),
+        USERNAME_KEY                    ( TAG + ".USERNAME_KEY" ),
+        PASSWORD_KEY                    ( TAG + ".PASSWORD_KEY" ),
+        PATIENT_ID_KEY                  ( TAG + ".PATIENT_ID_KEY"),
+        PREFERENCE_MDS_URL              ( TAG + ".PREFERENCE_MDS_URL"),
+        PREFERENCE_SECURE_TRANSMISSION  (TAG + ".PREFERENCE_SECURE_TRANSMISSION"),
+        PHONE_NUMBER_KEY                ( TAG + ".PHONE_NUMBER_KEY");
 
         private String key;
 
