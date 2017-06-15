@@ -8,9 +8,15 @@ import android.os.BatteryManager;
  */
 
 public class BatteryStatus {
+
     private boolean isCharging;
     private int level;
     private int scale;
+    private float batteryPct;
+
+    public boolean isCharging() {
+        return isCharging;
+    }
 
     public BatteryStatus(Intent intent) {
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
@@ -19,5 +25,13 @@ public class BatteryStatus {
 
         level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        batteryPct = level / (float)scale;
     }
+
+
+    public float getBatteryPercent() {
+        return batteryPct;
+    }
+
+
 }

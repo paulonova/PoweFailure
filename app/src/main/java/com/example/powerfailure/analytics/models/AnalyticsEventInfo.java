@@ -17,6 +17,16 @@ public class AnalyticsEventInfo {
         this.analyticsTypeEvent = analyticsTypeEvent;
     }
 
+    public AnalyticsEventInfo(AnalyticsEventCategory result, AnalyticsTypeEvent event, String extra) {
+        this(result, event);
+        this.lable = extra != null ? lable : null;
+    }
+
+    public AnalyticsEventInfo(AnalyticsEventCategory result, AnalyticsTypeEvent event, AnalyticsEventLabel batteryInfo, String value) {
+        this(result, event, value);
+        this.analyticsEventLable = batteryInfo;
+
+    }
 
 
     public String getStringValue() {
