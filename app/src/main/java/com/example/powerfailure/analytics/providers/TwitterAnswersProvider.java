@@ -11,17 +11,17 @@ import com.example.powerfailure.analytics.models.AnalyticsScreenData;
 /** * Created by Paulo Vila Nova on 2017-06-14.
  */
 
-public class TweeterAnswersProvider extends AppAnalyticsProvider {
+public class TwitterAnswersProvider extends AppAnalyticsProvider {
 
     public static final AppAnalyticsProvider.Factory FACTORY = new AppAnalyticsProvider.Factory(){
 
         @Override
         public AppAnalyticsProvider create() {
-            return new TweeterAnswersProvider();
+            return new TwitterAnswersProvider();
         }
     };
 
-    private TweeterAnswersProvider(){
+    private TwitterAnswersProvider(){
 
     }
 
