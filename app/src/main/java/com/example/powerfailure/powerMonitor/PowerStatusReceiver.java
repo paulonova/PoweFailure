@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.example.powerfailure.PowerFailureApp;
+import com.example.powerfailure.analytics.AppAnalytics;
 import com.example.powerfailure.events.PowerStatusEvent;
 import com.example.powerfailure.models.BatteryStatus;
 
@@ -39,18 +40,19 @@ public class PowerStatusReceiver {
 
     private void registerPowerConnectedReceiver(Context context) {
         if (context == null || powerConnectedReceiver != null) return;
-
         powerConnectedReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                BatteryStatus status = new BatteryStatus(intent);
+                AppAnalytics.getInstance().batteryTracker().powerStatus(status);
                 PowerFailureApp.getInstance()
-                               .post(new PowerStatusEvent(PowerStatusEvent.POWER_CONNECTED,
-                                                          new BatteryStatus(intent)));
+                        .post(new PowerStatusEvent(PowerStatusEvent.POWER_CONNECTED,
+                                new BatteryStatus(intent)));
             }
         };
         IntentFilter intentPowerFilter = new IntentFilter ();
         intentPowerFilter.addAction("android.intent.action.ACTION_POWER_CONNECTED");
-        context.registerReceiver(powerDisconnectedReceiver, intentPowerFilter);
+        context.registerReceiver(powerConnectedReceiver, intentPowerFilter);
     }
 
     private void registerPowerDisconnectedReceiver(Context context) {
@@ -59,10 +61,12 @@ public class PowerStatusReceiver {
         powerDisconnectedReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                BatteryStatus status = new BatteryStatus(intent);
+                AppAnalytics.getInstance().batteryTracker().powerStatus(status);
                 // send out notification of power failure
                 PowerFailureApp.getInstance()
-                               .post(new PowerStatusEvent(PowerStatusEvent.POWER_DISCONNECTED,
-                                                          new BatteryStatus(intent)));
+                        .post(new PowerStatusEvent(PowerStatusEvent.POWER_DISCONNECTED,
+                                new BatteryStatus(intent)));
             }
         };
 

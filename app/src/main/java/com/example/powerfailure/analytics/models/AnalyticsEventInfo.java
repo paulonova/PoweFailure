@@ -4,12 +4,11 @@ package com.example.powerfailure.analytics.models;
  */
 
 public class AnalyticsEventInfo {
-
     private AnalyticsEventCategory analyticsEventCategory;
-    private AnalyticsEventLabel analyticsEventLable;
+    private AnalyticsEventLabel analyticsEventLabel;
     private AnalyticsTypeEvent analyticsTypeEvent;
     private String stringValue;
-    private String lable;
+    private String label;
     private Integer value;
 
     public AnalyticsEventInfo(AnalyticsEventCategory analyticsEventCategory, AnalyticsTypeEvent analyticsTypeEvent) {
@@ -19,54 +18,48 @@ public class AnalyticsEventInfo {
 
     public AnalyticsEventInfo(AnalyticsEventCategory result, AnalyticsTypeEvent event, String extra) {
         this(result, event);
-        this.lable = extra != null ? lable : null;
+        this.label = extra != null ? label : null;
     }
 
     public AnalyticsEventInfo(AnalyticsEventCategory result, AnalyticsTypeEvent event, AnalyticsEventLabel batteryInfo, String value) {
         this(result, event, value);
-        this.analyticsEventLable = batteryInfo;
-
+        this.analyticsEventLabel = batteryInfo;
+        this.label = analyticsEventLabel.toString();
     }
-
 
     public String getStringValue() {
         return stringValue;
     }
 
-    public String getLable() {
-        return lable;
+    public String getLabel() {
+        return label;
     }
 
     public Integer getValue() {
         return value;
     }
 
-
     public AnalyticsEventCategory getAnalyticsEventCategory() {
         return analyticsEventCategory;
     }
 
-    public AnalyticsEventLabel getAnalyticsEventLable() {
-        return analyticsEventLable;
+    public AnalyticsEventLabel getAnalyticsEventLabel() {
+        return analyticsEventLabel;
     }
 
     public AnalyticsTypeEvent getAnalyticsTypeEvent() {
         return analyticsTypeEvent;
     }
 
-
-    public boolean hasStringLabel(){
-        return lable != null;
+    public boolean hasStringLabel() {
+        return label != null;
     }
 
-    public boolean hasTypeLabel(){
-        return analyticsEventLable != null;
+    public boolean hasTypeLabel() {
+        return analyticsEventLabel != null;
     }
 
-    public boolean hasValue(){
+    public boolean hasValue() {
         return value != null;
     }
-
-
-
 }

@@ -3,6 +3,7 @@ package com.example.powerfailure.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -11,7 +12,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.powerfailure.PowerFailureApp;
 import com.example.powerfailure.R;
+import com.example.powerfailure.analytics.AppAnalytics;
+import com.example.powerfailure.models.BatteryStatus;
 import com.example.powerfailure.network.ConnectivityMonitor;
 import com.example.powerfailure.powerMonitor.PowerStatusReceiver;
 
@@ -87,6 +91,7 @@ public class MainActivity extends Activity {
          */
         public void onClick(View v) {
             unregisterPowerStatusService();
+			sendBatteryStatus();
             // dynamically re-use same button to re-start power failure monitoring
             startStop.setOnClickListener(startListener);
             startStop.setText("Start");
@@ -104,11 +109,19 @@ public class MainActivity extends Activity {
             if (powerFail == null) {
                 powerFail = new PowerStatusReceiver();
             }
+			sendBatteryStatus();
 
             // dynamically re- use same button to stop power status monitoring
             startStop.setOnClickListener(stopListener);
             startStop.setText("Stop");
         }
     };
+
+    private void sendBatteryStatus(){
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		Intent batteryStatus = PowerFailureApp.getInstance().registerReceiver(null, ifilter);
+
+		AppAnalytics.getInstance().batteryTracker().batteryStatus(new BatteryStatus(batteryStatus));
+	}
 
 }
