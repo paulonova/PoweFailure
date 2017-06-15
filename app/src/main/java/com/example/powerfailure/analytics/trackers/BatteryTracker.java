@@ -27,7 +27,6 @@ public class BatteryTracker {
     }
 
     public void batteryStatus(BatteryStatus status){
-
         AnalyticsTypeEvent event = AnalyticsTypeEvent.BATTERY_PERCENT;
         String value = String.valueOf(status.getBatteryPercent());
 

@@ -32,9 +32,9 @@ public class PowerFailureApp extends Application {
 //        }
 
 
-
-
     }
+
+
 
     private void init() {
         singleton = this;
