@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1065284134900",
+    "firebase_url": "https://powerfailure-739b2.firebaseio.com",
+    "project_id": "powerfailure-739b2",
+    "storage_bucket": "powerfailure-739b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065284134900:android:f0f8302e30021fbc",
+        "android_client_info": {
+          "package_name": "com.example.powerfailure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065284134900-dtj7rnt16sdqe43dogs43l9mpt1bvoph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.powerfailure",
+            "certificate_hash": "410a5b6fe8fd356378bd3084c3c1cff2f5e618e4"
+          }
+        },
+        {
+          "client_id": "1065284134900-4klino9bhfhaubu0imoet102e395v58s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjn7NJZF4wF3XlB6hOsPigL3J5KLEJI7o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065284134900-4klino9bhfhaubu0imoet102e395v58s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

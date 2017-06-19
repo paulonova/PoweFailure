@@ -19,7 +19,7 @@ import com.example.powerfailure.models.BatteryStatus;
 import com.example.powerfailure.network.ConnectivityMonitor;
 import com.example.powerfailure.powerMonitor.PowerStatusReceiver;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FirebaseActivity {
 	private Button startStop;
 	private PowerStatusReceiver powerFail =  null;
 	private ConnectivityMonitor networkConnection;

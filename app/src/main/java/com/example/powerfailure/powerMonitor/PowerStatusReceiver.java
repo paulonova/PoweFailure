@@ -45,8 +45,7 @@ public class PowerStatusReceiver {
             public void onReceive(Context context, Intent intent) {
                 BatteryStatus status = new BatteryStatus(intent);
                 AppAnalytics.getInstance().batteryTracker().powerStatus(status);
-                PowerFailureApp.getInstance()
-                        .post(new PowerStatusEvent(PowerStatusEvent.POWER_CONNECTED,
+                PowerFailureApp.getInstance().post(new PowerStatusEvent(PowerStatusEvent.POWER_CONNECTED,
                                 new BatteryStatus(intent)));
             }
         };
