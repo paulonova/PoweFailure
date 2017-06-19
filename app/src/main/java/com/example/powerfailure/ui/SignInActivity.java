@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -46,7 +47,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -91,7 +92,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account){
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnFailureListener(this, new OnFailureListener() {
@@ -103,9 +104,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             handleFirebaseAuthResult(task.getResult());
-                        }else{
+                        } else {
                             Crashlytics.logException(new IllegalStateException("Problem with Firebase auth!"));
                         }
                     }
@@ -113,15 +114,43 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private void handleFirebaseAuthResult(AuthResult authResult){
-        if(authResult != null){
-            Toast.makeText(this, "Firebase Auth succeeded", Toast.LENGTH_SHORT).show();
+//    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+//        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+//        mFirebaseAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            handleFirebaseAuthResult(task.getResult());
+//                        } else {
+//                            Crashlytics.logException(new IllegalStateException("Firebase auth failed"));
+//                        }
+//                    }
+//                });
+//    }
+
+
+//    private void handleFirebaseAuthResult(AuthResult authResult){
+//        if(authResult != null){
+//            FirebaseUser user = authResult.getUser();
+//            Toast.makeText(this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
+//        }
+//        //Goto main activity
+//        Intent main = new Intent(this, MainActivity.class);
+//        main.putExtra("SIGNED_IN_KEY", true);
+//        startActivity(main);
+//        finish();
+//    }
+
+    private void handleFirebaseAuthResult(AuthResult authResult) {
+        if (authResult != null) {
+            FirebaseUser user = authResult.getUser();
+            Toast.makeText(this, "Welcome " + user.getEmail(), Toast.LENGTH_LONG).show();
+            Intent main = new Intent(this, MainActivity.class);
+            main.putExtra("SIGNED_IN_KEY", true);
+            startActivity(main);
+            finish();
         }
-        //Goto main activity
-        Intent main = new Intent(this, MainActivity.class);
-        main.putExtra("SIGNED_IN_KEY", true);
-        startActivity(main);
-        finish();
     }
 
 

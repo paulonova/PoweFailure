@@ -1,7 +1,6 @@
 package com.example.powerfailure.ui;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -20,19 +19,22 @@ import com.example.powerfailure.network.ConnectivityMonitor;
 import com.example.powerfailure.powerMonitor.PowerStatusReceiver;
 
 public class MainActivity extends FirebaseActivity {
-	private Button startStop;
+	private Button startStop, logoutButton;
 	private PowerStatusReceiver powerFail =  null;
 	private ConnectivityMonitor networkConnection;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main);
+
 		startStop = (Button) findViewById(R.id.start_stop);
+		logoutButton = (Button)findViewById(R.id.logout_button);
 
 		//  register a listener for button press
 		startStop.setOnClickListener(startListener);
+		logoutButton.setOnClickListener(getLogoutListener());
 
 		networkConnection = new ConnectivityMonitor(null);
 	}
